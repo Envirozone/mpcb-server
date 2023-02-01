@@ -5,7 +5,6 @@ const moment = require("moment-timezone");
 const JSZip = require("jszip");
 const fs = require("fs");
 const FormData = require("form-data");
-// const { getDpBefore, getDPAfterButBefore } = require('../../../utils/apilayer/getDpServices');
 const _ = require("lodash");
 const schedule = require("node-schedule");
 const unixTime = require("unix-timestamp");
@@ -211,5 +210,5 @@ const fetchData = async () => {
       console.log(error.message);
     });
 };
-fetchData();
-// setInterval(fetchData, 1000 * 60);
+// fetchData();
+setInterval(fetchData, 1000 * 60);
