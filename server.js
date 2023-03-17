@@ -195,7 +195,7 @@ const fetchData = async () => {
 //     "site_1679,site_1679,ETP,analyzer_225,parameter_84,BOD,4.50,unit_15,U,0++c2l0ZV8xNjc5LHZlcl8xLjAsZGVmYXVsdCwyMDIxLTEyLTEwLTE3OjE3OjIx####",
 //     "site_1679,site_1679,ETP,analyzer_225,parameter_85,TSS,7.61,unit_15,U,0++c2l0ZV8xNjc5LHZlcl8xLjAsZGVmYXVsdCwyMDIxLTEyLTEwLTE3OjE3OjIx####",
 //   ];
-  const url = "http://3.136.233.109:5000/data";
+  const url = "http://18.117.18.179:5000/data";
 
   axios(url)
     .then((res) => {
