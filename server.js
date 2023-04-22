@@ -189,26 +189,29 @@ const zipData = async (data, deviceConfig, time) => {
   }
 };
 
-const fetchData = async () => {
+const fetchData =  () => {
 //   const staticData = [
 //     "site_1679,site_1679,ETP,analyzer_225,parameter_83,COD,11.20,unit_15,U,0++c2l0ZV8xNjc5LHZlcl8xLjAsZGVmYXVsdCwyMDIxLTEyLTEwLTE3OjE3OjIx####",
 //     "site_1679,site_1679,ETP,analyzer_225,parameter_84,BOD,4.50,unit_15,U,0++c2l0ZV8xNjc5LHZlcl8xLjAsZGVmYXVsdCwyMDIxLTEyLTEwLTE3OjE3OjIx####",
 //     "site_1679,site_1679,ETP,analyzer_225,parameter_85,TSS,7.61,unit_15,U,0++c2l0ZV8xNjc5LHZlcl8xLjAsZGVmYXVsdCwyMDIxLTEyLTEwLTE3OjE3OjIx####",
 //   ];
-  const url = "http://18.117.18.179:5000/data";
+  // const url = "http://18.117.18.179:5000/data";
+  const url = "http://3.144.12.200:5000/data";
 
   axios(url)
     .then((res) => {
       const data = res.data;
       const dataToBeSend = extractData(data);
-      for (let i = 0; i < dataToBeSend.length; i++) {
-        const element = dataToBeSend[i];
-        zipData(element.data, element.config, moment().unix() + 19800);
-      }
+      console.log(data)
+      console.log(dataToBeSend)
+      // for (let i = 0; i < dataToBeSend.length; i++) {
+      //   const element = dataToBeSend[i];
+      //   zipData(element.data, element.config, moment().unix() + 19800);
+      // }
     })
     .catch((error) => {
       console.log(error.message);
     });
 };
-// fetchData();
-setInterval(fetchData, 1000 * 60);
+fetchData();
+// setInterval(fetchData, 1000 * 60);
