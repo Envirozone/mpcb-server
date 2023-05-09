@@ -7,14 +7,21 @@ function genRand(min, max, decimalPlaces) {
   return Math.floor(rand * power) / power;
 }
 
-const setDataTOJharkhand = function () {
-  const val = genRand(39, 40, 2);
+const setDataTOJharkhand = function (config) {
+  console.log(config);
+  const {
+    venderId,
+    industryId,
+    stationId,
+    analyserId,
+    parameterName,
+    unit,
+    val,
+    timeStamp,
+  } = config;
   axios({
     method: "GET",
-    url: `http://jsac.jharkhand.gov.in/Pollution/WebService.asmx/GET_PM_DATA?vender_id=21&industry_id=SKID_429&stationId=Ambient_1&analyserId=QESPM10&processValue=${val}&scaledValue=${val}&flag=U&timestamp=${format(
-      "yyyy-MM-dd hh:mm:ss",
-      new Date()
-    )}&unit=mg/nm3&parameter=PM10`,
+    url: `http://jsac.jharkhand.gov.in/Pollution/WebService.asmx/GET_PM_DATA?vender_id=${venderId}&industry_id=${industryId}&stationId=${stationId}&analyserId=${analyserId}&processValue=${val}&scaledValue=${val}&flag=U&timestamp=${timeStamp}&unit=${parameterName}&parameter=${unit}`,
   })
     .then((res) => {
       console.log(res.data);
@@ -23,6 +30,27 @@ const setDataTOJharkhand = function () {
       console.log(error.message);
     });
 };
+
 setInterval(() => {
-  setDataTOJharkhand();
+  setDataTOJharkhand({
+    venderId: 21,
+    industryId: "SKID_499",
+    stationId: "Ambient_1",
+    analyserId: "ENE015601",
+    parameterName: "PM10",
+    unit: "mg/nm3",
+    val: genRand(39, 40, 2),
+    timeStamp: format("yyyy-MM-dd hh:mm:ss", new Date()),
+  });
+
+  // setDataTOJharkhand({
+  //   venderId: 21,
+  //   industryId: "SKID_429",
+  //   stationId: "Ambient_1",
+  //   analyserId: "QESPM10",
+  //   parameterName: "PM10",
+  //   unit: "mg/nm3",
+  //   val: genRand(39, 40, 2),
+  //   timeStamp: format("yyyy-MM-dd hh:mm:ss", new Date()),
+  // });
 }, 1000 * 60 * 30);
